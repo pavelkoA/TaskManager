@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils.translation import gettext
 
 
 def index(request):

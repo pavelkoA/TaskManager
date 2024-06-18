@@ -1,13 +1,58 @@
 {% load django_bootstrap5 %}
 
+{% bootstrap_css %}
+
+{% bootstrap_messages %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}Менеджер задач Hexlet{% endblock %}</title>
 </head>
-<body>
-    
+<body class="d-flex flex-column min-vh-100">
+    {% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Менеджер задач</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/users/">Пользователи</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link activk" href="/login/">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link activ" href="/users/create/">Регистрация</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    <div class="container wrapper flex-grow-1">
+
+      <h1 class="my-4"></h1>
+
+      <h1 class="my-4"></h1>
+
+    {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}
+    <footer class="container my-5 pt-4 border-top">
+        <div class="container-lg">
+            <div class="text-center">
+            <a href="https://python-project-52-j3e4.onrender.com" target="_blank">Демонстрационная версия приложения</a>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
 </body>
 </html>
