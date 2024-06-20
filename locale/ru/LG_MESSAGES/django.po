@@ -1,4 +1,0 @@
-
-
-msgid "Менеджер задач Hexlet"
-msgstr "Task Manager Hexl3t"
