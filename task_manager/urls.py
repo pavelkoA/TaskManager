@@ -18,10 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
 from django.conf.urls.i18n import i18n_patterns
+from django.conf.urls import url
 
-urlpatterns = [
+
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
-] + i18n_patterns(
+    path('login/', views.UserLoginView.as_view(), name='login'),
+    # path('logout/', views.UserLogoutView.as_view(), name='logout'),
+    url('logout/', 'django.contrib.auth.views.logout', name='logout'),
     path('i18n/', include('django.conf.urls.i18n')),
-    path('', views.index, name='task_manager_index'),
+    path('', views.IndexView.as_view(), name='task_manager_index'),
+    path("", include("django.contrib.auth.urls")),
+    path('users/', include('task_manager.users.urls'))
 )

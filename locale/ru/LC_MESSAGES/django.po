@@ -51,3 +51,19 @@ msgstr "Демонстрационная версия приложения"
 #: templates/task_manager/base.html:
 msgid "Task manager Hexlet"
 msgstr "Менеджер задач Hexlet"
+
+#: templates/task_manager/base.html:
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/task_manager/base.html:
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/task_manager/base.html:
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/task_manager/base.html:
+msgid "Logout"
+msgstr "Выход"
