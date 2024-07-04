@@ -19,9 +19,10 @@
             </ul>
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout/">{% translate 'Logout' %}</a>
-                </li>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link" style="display: inline; padding: 0; background: none; border: none;">{% translate "Logout" %}</button>
+                </form>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="/login/">{% translate 'Login' %}</a>

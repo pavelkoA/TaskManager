@@ -15,6 +15,7 @@ import dj_database_url
 import os
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 
 
 load_dotenv()
@@ -158,4 +159,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL  =  "/"
 
-LOGOUT_REDIRECT_URL  =  "/"
+LOGOUT_REDIRECT_URL  =  reverse_lazy('index')

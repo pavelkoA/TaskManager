@@ -1,28 +1,28 @@
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 
 {% load django_bootstrap5 %}
-
-
 {% bootstrap_css %}
-
-{% bootstrap_messages %}
+{% bootstrap_javascript %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% translate "Менеджер задач Hexlet" %}{% endblock %}</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
+
     {% include 'nav.html' %}
+
     <div class="container wrapper flex-grow-1">
+        <div class="alert-{{ message.tag }}" role="alert">
+            {% bootstrap_messages %}
+        </div>
 
-      <h1 class="my-4"></h1>
-
-      <h1 class="my-4"></h1>
-
-    {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
 
     {% block footer %}

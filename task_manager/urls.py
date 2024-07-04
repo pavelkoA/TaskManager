@@ -19,14 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from task_manager import views
 from django.views.generic import TemplateView
-from django.contrib.auth.views import LoginView, LogoutView
 
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
     path('admin/', admin.site.urls),
-    path('i18n/', include('django.conf.urls.i18n')),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
-    path('login/', LoginView.as_view(template_name='registration/login.html')),
+    path('login/', views.UserLoginView.as_view(), name='login'),
+    path('logout/', views.UserLogoutView.as_view(), name='logout'),
     path('', include("django.contrib.auth.urls")),
     path('users/', include('task_manager.users.urls'))
-)
+]
