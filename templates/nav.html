@@ -12,21 +12,31 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
-            <ul class="navbar-nav me-auto">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'users' %}">{% translate 'Users' %}</a>
                 </li>
-            </ul>
-            <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-link nav-link" style="display: inline; padding: 0; background: none; border: none;">{% translate "Logout" %}</button>
-                </form>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statuses_list' %}">{% translate "Statuses" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'labels_list' %}">{% translate "Labels" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tasks_list' %}">{% translate "Tasks" %}</a>
+                    </li>
+                    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link nav-link" style="display: inline; padding: 0; background: none; border: none;">{% translate "Logout" %}</button>
+                    </form>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/login/">{% translate 'Login' %}</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">{% translate "Login" %}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'user_create' %}">{% translate "Sign Up" %}</a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
