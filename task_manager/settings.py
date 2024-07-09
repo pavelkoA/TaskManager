@@ -131,8 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
-    ('ru', _('Russian')),
-    ('en', _('English'))
+    ('ru', _('Russian'))
 ]
 
 LOCALE_PATHS = [

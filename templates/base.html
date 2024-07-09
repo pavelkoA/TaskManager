@@ -9,13 +9,13 @@
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{% block title %}{% translate "Менеджер задач Hexlet" %}{% endblock %}</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
-
+    <header>
     {% include 'nav.html' %}
-
+    </header>
     <div class="container wrapper flex-grow-1">
         <div class="alert-{{ message.tag }}" role="alert">
             {% bootstrap_messages %}
@@ -33,10 +33,6 @@
                     <a href="https://python-project-52-j3e4.onrender.com" target="_blank">{% translate "Demo version of the application" %}</a>
                 </div>
             </div>
-            <ul class="nav justify-content-end list-unstyled d-flex">
-                <li class="ms-3"><a href="/en/" role="button">EN</a></li>
-                <li class="ms-3"><a href="/ru/" role="button">RU</a></li>
-            </ul>
         </footer>
     </div>
     {% endblock %}

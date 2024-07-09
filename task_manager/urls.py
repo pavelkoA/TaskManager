@@ -22,9 +22,9 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
-    path('users/', include('task_manager.users.urls'))
+    path('users/', include('task_manager.users.urls')),
+    path('admin/', admin.site.urls),
 ]
