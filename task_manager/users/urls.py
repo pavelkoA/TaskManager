@@ -1,8 +1,7 @@
-from django.urls import path, include
+from django.urls import path
 from task_manager.users import views
 
 
 urlpatterns = (
-    path('', views.users, name='users_list'),
-    # path('create/', views.user_create, name='user_create'),
+    path('', views.UsersView.as_view(), name='users_list'),
 )
