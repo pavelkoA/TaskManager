@@ -88,12 +88,12 @@ msgstr "Дата создания"
 msgid "Update"
 msgstr "Изменить"
 
+msgid "Delete user"
+msgstr "Удалить пользователя"
+
 #: templates/users/users_list.html:28
 msgid "Delete"
 msgstr "Удалить"
 
-#~ msgid "Registration"
-#~ msgstr "Регистрация"
-
-#~ msgid "Task manager Hexlet"
-#~ msgstr "Менеджер задач Hexlet"
+msgid "Are you want to delete"
+msgstr "Вы хотите удалить"
