@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'task_manager',
     'task_manager.users',
+    'task_manager.statuses',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +163,5 @@ LOGIN_REDIRECT_URL  =  reverse_lazy('index')
 LOGOUT_REDIRECT_URL  =  reverse_lazy('index')
 
 AUTH_USER_MODEL = 'users.User'
+
+FIXTURE_DIRS = ('task_manager/tests/fixtures/',)

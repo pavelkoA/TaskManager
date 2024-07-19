@@ -56,15 +56,15 @@ msgstr "Выход"
 msgid "Login"
 msgstr "Вход"
 
-#: templates/next_nav.html:2
+msgid "Status"
+msgstr "Статус"
+
 msgid "Statuses"
 msgstr "Статусы"
 
-#: templates/next_nav.html:5
 msgid "Labels"
 msgstr "Метки"
 
-#: templates/next_nav.html:8
 msgid "Tasks"
 msgstr "Задачи"
 

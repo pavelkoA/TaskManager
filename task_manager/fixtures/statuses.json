@@ -1,0 +1,26 @@
+[
+    {
+        "model": "statuses.status",
+        "pk": 1,
+        "fields": {
+            "time_create": "2024-07-15T01:00:00.000Z",
+            "name": "Запланировано"
+        }
+    },
+    {
+        "model": "statuses.status",
+        "pk": 5,
+        "fields": {
+            "time_create": "2024-07-17T12:00:00.000Z",
+            "name": "В работе"
+        }
+    },
+    {
+        "model": "statuses.status",
+        "pk": 6,
+        "fields": {
+            "time_create": "2024-07-19T12:00:00.000Z",
+            "name": "Завершена"
+        }
+    }
+    ]
