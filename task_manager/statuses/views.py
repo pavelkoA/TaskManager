@@ -9,7 +9,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 class StatusesListView(UserAuthenticateMixin, ListView):
     model = Status
-    template_name = 'statuses/statuses.html'
+    template_name = 'statuses/statuses_list.html'
     context_object_name = 'statuses'
     extra_context = {
         'title': _('Statuses')
@@ -18,10 +18,10 @@ class StatusesListView(UserAuthenticateMixin, ListView):
 
 class StatusCreateView(UserAuthenticateMixin, SuccessMessageMixin, CreateView):
     model = Status
-    template_name = 'layouts/form.html'
+    template_name = 'form.html'
     form_class = StatusForm
     success_message = _('Status successfully created')
-    success_url = reverse_lazy('statuses')
+    success_url = reverse_lazy('statuses_list')
     extra_context = {
         'title': _('Create status'),
         'button_text': _('Create'),
@@ -30,10 +30,10 @@ class StatusCreateView(UserAuthenticateMixin, SuccessMessageMixin, CreateView):
 
 class StatusUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
     model = Status
-    template_name = 'layouts/form.html'
+    template_name = 'form.html'
     form_class = StatusForm
     success_message = _('Status successfully changed')
-    success_url = reverse_lazy('statuses')
+    success_url = reverse_lazy('statuses_list')
     extra_context = {
         'title': _('Change status'),
         'button_text': _('Change'),
@@ -44,13 +44,13 @@ class StatusDeleteView(
     UserAuthenticateMixin, DeleteProtectionMixin, SuccessMessageMixin, DeleteView
 ):
     model = Status
-    template_name = 'layouts/delete.html'
+    template_name = 'statuses/delete.html'
     success_message = _('Status successfully delete')
-    success_url = reverse_lazy('statuses')
+    success_url = reverse_lazy('statuses_list')
     protected_message = _(
         'It is not possible to delete a status because it is in use'
     )
-    protected_url = reverse_lazy('statuses')
+    protected_url = reverse_lazy('statuses_list')
     extra_context = {
         'title': _('Delete status'),
         'button_text': _('Yes, delete'),

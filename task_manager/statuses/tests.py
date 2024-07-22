@@ -3,14 +3,14 @@ from django.urls import reverse
 from task_manager.users.models import User
 from task_manager.statuses.models import Status
 from django.core.exceptions import ObjectDoesNotExist
-from task_manager.translations.trans import TransMessagesStatus
+from django.utils.translation import gettext_lazy as _
 
 
 class TestStatusesWithoutAuth(TestCase):
 
     def setUp(self):
-        self.login = reverse('user_login')
-        self.urls = [reverse('statuses'),
+        self.login = reverse('login')
+        self.urls = [reverse('statuses_list'),
                      reverse('status_create'),
                      reverse('status_delete', args=[1]),
                      reverse('status_update', args=[1])]
@@ -53,7 +53,7 @@ class StatusesTestCase(TestCase):
         self.assertRedirects(post_response, self.statuses)
         self.assertTrue(Status.objects.get(id=7))
         self.assertContains(
-            post_response, text=TransMessagesStatus.create_success)
+            post_response, text= _('Status successfully created'))
 
     def test_update_status(self):
         self.update_status = reverse('status_update', args=[1])
@@ -67,7 +67,7 @@ class StatusesTestCase(TestCase):
         self.status = Status.objects.get(pk=1)
         self.assertEqual(self.status.name, self.form_data['name'])
         self.assertContains(
-            post_response, text=TransMessagesStatus.update_success)
+            post_response, text= _('Status successfully changed'))
 
     def test_delete_used_status(self):
         self.delete_status = reverse('status_delete', args=[1])
@@ -90,4 +90,4 @@ class StatusesTestCase(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Status.objects.get(pk=5)
         self.assertContains(
-            post_response, text=TransMessagesStatus.delete_success)
+            post_response, text= _('Status successfully delete'))
