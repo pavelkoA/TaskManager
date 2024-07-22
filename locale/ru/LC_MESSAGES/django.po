@@ -26,11 +26,11 @@ msgstr ""
 
 #: task_manager/views.py:13
 msgid "You are logged in"
-msgstr ""
+msgstr "Вы вошли в систему"
 
 #: task_manager/views.py:20
 msgid "You are logged out"
-msgstr ""
+msgstr "Вы вышли из системы"
 
 #: templates/base.html:13
 msgid "Менеджер задач Hexlet"
@@ -68,13 +68,22 @@ msgstr "Метки"
 msgid "Tasks"
 msgstr "Задачи"
 
-#: templates/next_nav.html:14
-msgid "Sign Up"
+#: templates/nav.html:14
+msgid "Sign up"
 msgstr "Регистрация"
 
 #: templates/users/users_list.html:11
 msgid "User name"
 msgstr "Имя пользователя"
+
+msgid "First name"
+msgstr "Имя"
+
+msgid "Last name"
+msgstr "Фамилия"
+
+msgid "Register"
+msgstr "Зарегистрировать"
 
 #: templates/users/users_list.html:12
 msgid "Full name"
@@ -97,3 +106,30 @@ msgstr "Удалить"
 
 msgid "Are you want to delete"
 msgstr "Вы хотите удалить"
+
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+msgid "Create status"
+msgstr "Создать статус"
+
+msgid "Create"
+msgstr "Создать"
+
+msgid "Name status"
+msgstr "Имя статуса"
+
+msgid "Status successfully changed"
+msgstr "Статус успешно изменен"
+
+msgid "Change status"
+msgstr "Изменить статус"
+
+msgid "Change"
+msgstr "Изменить"
+
+msgid "Status successfully delete"
+msgstr "Статус успешно удален"
+
+msgid "Delete status"
+msgstr "Удалить статус"

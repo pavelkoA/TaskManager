@@ -18,4 +18,4 @@ lint:
 	poetry run flake8 task_manager
 
 compilemessages:
-	django-admin compilemessages
+	poetry run django-admin compilemessages --ignore=.venv
