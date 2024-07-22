@@ -22,19 +22,18 @@ class TestStatusesWithoutAuth(TestCase):
 
 
 class StatusesTestCase(TestCase):
-    fixtures = ['statuses.json', 'users.json']
+    fixtures = ['statuses.json', 'user.json']
 
     def setUp(self):
-        self.user = User.objects.get(pk=2)
+        self.user = User.objects.get(pk=1)
         self.client.force_login(self.user)
-        self.statuses = reverse('statuses')
+        self.statuses = reverse('statuses_list')
         self.form_data = {'name': 'new status'}
 
     def test_status_list(self):
         self.first_status = Status.objects.get(pk=1)
         self.second_status = Status.objects.get(pk=5)
         self.third_status = Status.objects.get(pk=6)
-        """ GET """
         response = self.client.get(self.statuses)
         self.assertEqual(response.status_code, 200)
         response_tasks = list(response.context['statuses'])
@@ -44,10 +43,10 @@ class StatusesTestCase(TestCase):
 
     def test_create_status(self):
         self.create_status = reverse('status_create')
-        """ GET """
+
         get_response = self.client.get(self.create_status)
         self.assertEqual(get_response.status_code, 200)
-        """ POST """
+
         post_response = self.client.post(self.create_status,
                                          self.form_data, follow=True)
         self.assertRedirects(post_response, self.statuses)
@@ -57,10 +56,10 @@ class StatusesTestCase(TestCase):
 
     def test_update_status(self):
         self.update_status = reverse('status_update', args=[1])
-        """ GET """
+
         get_response = self.client.get(self.update_status)
         self.assertEqual(get_response.status_code, 200)
-        """ POST """
+
         post_response = self.client.post(self.update_status,
                                          self.form_data, follow=True)
         self.assertRedirects(post_response, self.statuses)
@@ -71,20 +70,20 @@ class StatusesTestCase(TestCase):
 
     def test_delete_used_status(self):
         self.delete_status = reverse('status_delete', args=[1])
-        """ GET """
+
         get_response = self.client.get(self.delete_status)
         self.assertEqual(get_response.status_code, 200)
-        """ POST """
+
         post_response = self.client.post(self.delete_status)
         self.assertRedirects(post_response, self.statuses)
         self.assertEqual(len(Status.objects.all()), 2)
 
     def test_delete_not_used_status(self):
         self.delete_status = reverse('status_delete', args=[5])
-        """ GET """
+
         get_response = self.client.get(self.delete_status)
         self.assertEqual(get_response.status_code, 200)
-        """ POST """
+
         post_response = self.client.post(self.delete_status, follow=True)
         self.assertRedirects(post_response, self.statuses)
         with self.assertRaises(ObjectDoesNotExist):
