@@ -6,15 +6,15 @@ from task_manager.users.models import User
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import AuthRequiredMixin, AuthorDeletionMixin
+from task_manager.mixins import UserAuthenticateMixin, DeleteProtectionMixin
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, DetailView
 )
 
 
-class TasksListView(AuthRequiredMixin, FilterView, ListView):
+class TasksListView(UserAuthenticateMixin, FilterView, ListView):
     model = Task
-    template_name = 'tasks/tasks.html'
+    template_name = 'tasks/tasks_list.html'
     filterset_class = TaskFilter
     context_object_name = 'tasks'
     extra_context = {
@@ -23,7 +23,7 @@ class TasksListView(AuthRequiredMixin, FilterView, ListView):
     }
 
 
-class TaskShowView(AuthRequiredMixin, DetailView):
+class TaskShowView(UserAuthenticateMixin, DetailView):
     model = Task
     template_name = 'tasks/task_show.html'
     context_object_name = 'task'
@@ -32,11 +32,11 @@ class TaskShowView(AuthRequiredMixin, DetailView):
     }
 
 
-class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(UserAuthenticateMixin, SuccessMessageMixin, CreateView):
     model = Task
-    template_name = 'layouts/form.html'
+    template_name = 'form.html'
     form_class = TaskForm
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully created')
     extra_context = {
         'title': _('Create task'),
@@ -49,11 +49,11 @@ class TaskCreateView(AuthRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(AuthRequiredMixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
     model = Task
-    template_name = 'layouts/form.html'
+    template_name = 'form.html'
     form_class = TaskForm
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully changed')
     extra_context = {
         'title': _('Task change'),
@@ -62,11 +62,11 @@ class TaskUpdateView(AuthRequiredMixin, SuccessMessageMixin, UpdateView):
 
 
 class TaskDeleteView(
-    AuthRequiredMixin, AuthorDeletionMixin, SuccessMessageMixin, DeleteView
+    UserAuthenticateMixin, DeleteProtectionMixin, SuccessMessageMixin, DeleteView
 ):
     model = Task
-    template_name = 'layouts/delete.html'
-    success_url = reverse_lazy('tasks')
+    template_name = 'tasks/delete.html'
+    success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully delete')
     author_message = _('The task can be deleted only by its author')
     author_url = reverse_lazy('tasks')

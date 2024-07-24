@@ -44,7 +44,7 @@ class StatusDeleteView(
     UserAuthenticateMixin, DeleteProtectionMixin, SuccessMessageMixin, DeleteView
 ):
     model = Status
-    template_name = 'delete.html'
+    template_name = 'statuses/delete.html'
     success_message = _('Status successfully delete')
     success_url = reverse_lazy('statuses_list')
     protected_message = _(

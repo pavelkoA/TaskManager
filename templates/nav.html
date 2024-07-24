@@ -19,9 +19,15 @@
                 <a class="nav-link" href="{% url 'users_list' %}">{% translate "Users" %}</a>
             </li>
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'statuses_list' %}">{% translate 'Statuses' %}</a>
-                </li>
+            <li class="nav-item">
+                <a class="nav-link text-light-emphasis" href="{% url 'statuses_list' %}">{% trans 'Statuses' %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light-emphasis" href="{% url 'labels_list' %}">{% trans 'Labels' %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-light-emphasis" href="{% url 'tasks_list' %}">{% trans 'Tasks' %}</a>
+            </li>
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <input type="submit" class="btn nav-link" value="{% translate 'Logout' %}">

@@ -8,5 +8,15 @@
         "username": "VasyaZloy",
         "password": "qwerty123!"
       }
+    },
+    {
+      "model": "users.user",
+      "pk": 2,
+      "fields": {
+        "first_name": "Lexa",
+        "last_name": "Ivanov",
+        "username": "prostolexa",
+        "password": "qwerty123!"
+      }
     }
   ]

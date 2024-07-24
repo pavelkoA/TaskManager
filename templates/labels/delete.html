@@ -5,7 +5,7 @@
     <h2 class="my-4">{% translate 'Delete label' %}</h2>
     <form method="post">
         {% csrf_token %}
-        <p>{% trans 'Are you want to delete' %} {{ user.username }} ?</p>
+        <p>{% trans 'Are you want to delete' %} {{ label.username }} ?</p>
         <button type="submit" class="btn btn-danger">{% translate 'Delete' %}</button>
     </form>
 {% endblock %}

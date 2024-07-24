@@ -2,10 +2,10 @@
 {% load i18n %}
 {% load django_bootstrap5 %}
 {% block content %}
-    <h2 class="my-4">{% translate 'Delete label' %}</h2>
+    <h2 class="my-4">{% translate 'Delete task' %}</h2>
     <form method="post">
         {% csrf_token %}
-        <p>{% trans 'Are you want to delete' %} {{ user.username }} ?</p>
+        <p>{% trans 'Are you want to delete' %} {{ task.username }} ?</p>
         <button type="submit" class="btn btn-danger">{% translate 'Delete' %}</button>
     </form>
 {% endblock %}

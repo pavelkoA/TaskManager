@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 
-class TestStatusesWithoutAuth(TestCase):
+class TestLabelsNotAuth(TestCase):
 
     def setUp(self):
         self.login = reverse('login')
@@ -32,13 +32,14 @@ class StatusesTestCase(TestCase):
 
     def test_status_list(self):
         self.first_status = Status.objects.get(pk=1)
-        self.second_status = Status.objects.get(pk=5)
-        self.third_status = Status.objects.get(pk=6)
+        self.second_status = Status.objects.get(pk=2)
+        self.third_status = Status.objects.get(pk=3)
         response = self.client.get(self.statuses)
         self.assertEqual(response.status_code, 200)
         response_tasks = list(response.context['statuses'])
         self.assertQuerysetEqual(response_tasks,
-                                 [self.first_status, self.second_status,
+                                 [self.first_status,
+                                  self.second_status,
                                   self.third_status])
 
     def test_create_status(self):
@@ -48,11 +49,12 @@ class StatusesTestCase(TestCase):
         self.assertEqual(get_response.status_code, 200)
 
         post_response = self.client.post(self.create_status,
-                                         self.form_data, follow=True)
+                                         self.form_data,
+                                         follow=True)
         self.assertRedirects(post_response, self.statuses)
-        self.assertTrue(Status.objects.get(id=7))
-        self.assertContains(
-            post_response, text= _('Status successfully created'))
+        self.assertTrue(Status.objects.get(id=3))
+        self.assertContains(post_response,
+                            text= _('Status successfully created'))
 
     def test_update_status(self):
         self.update_status = reverse('status_update', args=[1])
@@ -61,7 +63,8 @@ class StatusesTestCase(TestCase):
         self.assertEqual(get_response.status_code, 200)
 
         post_response = self.client.post(self.update_status,
-                                         self.form_data, follow=True)
+                                         self.form_data,
+                                         follow=True)
         self.assertRedirects(post_response, self.statuses)
         self.status = Status.objects.get(pk=1)
         self.assertEqual(self.status.name, self.form_data['name'])
@@ -79,14 +82,15 @@ class StatusesTestCase(TestCase):
         self.assertEqual(len(Status.objects.all()), 2)
 
     def test_delete_not_used_status(self):
-        self.delete_status = reverse('status_delete', args=[5])
+        self.delete_status = reverse('status_delete', args=[2])
 
         get_response = self.client.get(self.delete_status)
         self.assertEqual(get_response.status_code, 200)
 
-        post_response = self.client.post(self.delete_status, follow=True)
+        post_response = self.client.post(self.delete_status,
+                                         follow=True)
         self.assertRedirects(post_response, self.statuses)
         with self.assertRaises(ObjectDoesNotExist):
-            Status.objects.get(pk=5)
-        self.assertContains(
-            post_response, text= _('Status successfully delete'))
+            Status.objects.get(pk=2)
+        self.assertContains(post_response,
+                            text= _('Status successfully delete'))

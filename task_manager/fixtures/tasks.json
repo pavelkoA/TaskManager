@@ -1,0 +1,38 @@
+[
+    {
+        "model": "tasks.task",
+        "pk": 1,
+        "fields": {
+            "name": "Делишки",
+            "description": "Делать дела, жить жизнь, заниматься занятиями.",
+            "author": 1,
+            "status": 1,
+            "executor": 1,
+            "created_at": "2024-01-10T12:00:00.000Z"
+        }
+    },
+    {
+        "model": "tasks.task",
+        "pk": 2,
+        "fields": {
+            "name": "Работа",
+            "description": "Идти на работу, работать работу, идти с работы.",
+            "author": 1,
+            "status": 2,
+            "executor": 1,
+            "created_at": "2024-02-20T12:00:00.000Z"
+        }
+    },
+    {
+        "model": "tasks.task",
+        "pk": 3,
+        "fields": {
+            "name": "Учеба",
+            "description": "Учить учебу, решать задачи, делать проекты",
+            "author": 1,
+            "status": 3,
+            "executor": 1,
+            "created_at": "2024-03-30T12:00:00.000Z"
+        }
+    }
+]

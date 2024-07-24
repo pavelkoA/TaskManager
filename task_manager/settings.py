@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -167,3 +168,10 @@ LOGOUT_REDIRECT_URL  =  reverse_lazy('index')
 AUTH_USER_MODEL = 'users.User'
 
 FIXTURE_DIRS = ('task_manager/tests/fixtures/',)
+
+ROLLBAR = {
+    'access_token': '48163152cd23486691b5b06e28f9feb9',
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}

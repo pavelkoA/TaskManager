@@ -25,7 +25,7 @@ class Task(models.Model):
         auto_now_add=True, verbose_name=_('Creation date')
     )
     labels = models.ManyToManyField(
-        Label, through='TaskLabelRelation', through_fields=('task', 'label'),
+        Label, through='TaskLabel', through_fields=('task', 'label'),
         blank=True, verbose_name=_('Labels')
     )
 
@@ -37,6 +37,6 @@ class Task(models.Model):
         verbose_name_plural = _('Tasks')
 
 
-class TaskLabelRelation(models.Model):
+class TaskLabel(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     label = models.ForeignKey(Label, on_delete=models.PROTECT)

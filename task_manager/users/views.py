@@ -18,7 +18,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     model = get_user_model()
     form_class = UserForm
     success_url = reverse_lazy('login')
-    success_message = _('User has been successfully registered')
+    success_message = _('User successfully registered')
 
 
 class UserUpdateView(UserAuthenticateMixin,
@@ -29,8 +29,8 @@ class UserUpdateView(UserAuthenticateMixin,
     model = get_user_model()
     form_class = UpdateUserForm
     success_url = reverse_lazy('users_list')
-    success_message = _('User is successfully updated')
-    permission_message = _('You have no rights to change another user.')
+    success_message = _('User successfully updated')
+    permission_message = _('You have no rights to changed user.')
     permission_url = reverse_lazy('users_list')
 
 
@@ -42,10 +42,9 @@ class UserDeleteView(UserAuthenticateMixin,
     template_name = 'users/delete.html'
     model = get_user_model()
     success_url = reverse_lazy('users_list')
-    success_message = _('User is successfully deleted')
-    permission_message = _('You have no rights to change another user.')
+    success_message = _('User successfully deleted')
+    permission_message = _('You have no rights to deleted user.')
     permission_url = 'users_list'
-    rejection_message = _('Unable to delete user because it is in use')
     rejection_next_url = reverse_lazy('users_list')
 
     def post(self, request, *args, **kwargs):
