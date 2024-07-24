@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 
-class TestLabelsNotAuth(TestCase):
+class TestStatusessNotAuth(TestCase):
 
     def setUp(self):
         self.login = reverse('login')
@@ -21,7 +21,7 @@ class TestLabelsNotAuth(TestCase):
             self.assertRedirects(response, self.login)
 
 
-class StatusesTestCase(TestCase):
+class TestStatusesCase(TestCase):
     fixtures = ['statuses.json', 'user.json']
 
     def setUp(self):

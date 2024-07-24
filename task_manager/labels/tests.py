@@ -21,7 +21,7 @@ class TestLabelsNotAuth(TestCase):
             self.assertRedirects(response, self.login)
 
 
-class LabelsTestCase(TestCase):
+class TestLabelsCase(TestCase):
     fixtures = ['labels.json', 'user.json']
 
     def setUp(self):
