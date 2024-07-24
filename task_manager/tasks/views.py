@@ -6,13 +6,15 @@ from task_manager.users.models import User
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import UserAuthenticateMixin, DeleteProtectionMixin
+from task_manager import mixins
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, DetailView
 )
 
 
-class TasksListView(UserAuthenticateMixin, FilterView, ListView):
+class TasksListView(mixins.UserAuthenticateMixin,
+                    FilterView,
+                    ListView):
     model = Task
     template_name = 'tasks/tasks_list.html'
     filterset_class = TaskFilter
@@ -23,7 +25,8 @@ class TasksListView(UserAuthenticateMixin, FilterView, ListView):
     }
 
 
-class TaskShowView(UserAuthenticateMixin, DetailView):
+class TaskShowView(mixins.UserAuthenticateMixin,
+                   DetailView):
     model = Task
     template_name = 'tasks/task_show.html'
     context_object_name = 'task'
@@ -32,7 +35,9 @@ class TaskShowView(UserAuthenticateMixin, DetailView):
     }
 
 
-class TaskCreateView(UserAuthenticateMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(mixins.UserAuthenticateMixin,
+                     SuccessMessageMixin,
+                     CreateView):
     model = Task
     template_name = 'form.html'
     form_class = TaskForm
@@ -49,7 +54,9 @@ class TaskCreateView(UserAuthenticateMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(mixins.UserAuthenticateMixin,
+                     SuccessMessageMixin,
+                     UpdateView):
     model = Task
     template_name = 'form.html'
     form_class = TaskForm
@@ -61,8 +68,8 @@ class TaskUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class TaskDeleteView(UserAuthenticateMixin,
-                     DeleteProtectionMixin,
+class TaskDeleteView(mixins.UserAuthenticateMixin,
+                     mixins.DeleteProtectionMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task

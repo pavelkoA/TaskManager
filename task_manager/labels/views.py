@@ -3,11 +3,11 @@ from .forms import LabelForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import UserAuthenticateMixin, DeleteProtectionMixin
+from task_manager import mixins
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class LabelListView(UserAuthenticateMixin,
+class LabelListView(mixins.UserAuthenticateMixin,
                     ListView):
     model = Label
     template_name = 'labels/labels_list.html'
@@ -17,7 +17,7 @@ class LabelListView(UserAuthenticateMixin,
     }
 
 
-class LabelCreateView(UserAuthenticateMixin,
+class LabelCreateView(mixins.UserAuthenticateMixin,
                       SuccessMessageMixin,
                       CreateView):
     model = Label
@@ -31,7 +31,7 @@ class LabelCreateView(UserAuthenticateMixin,
     }
 
 
-class LabelUpdateView(UserAuthenticateMixin,
+class LabelUpdateView(mixins.UserAuthenticateMixin,
                       SuccessMessageMixin,
                       UpdateView):
     model = Label
@@ -45,8 +45,8 @@ class LabelUpdateView(UserAuthenticateMixin,
     }
 
 
-class LabelDeleteView(UserAuthenticateMixin,
-                      DeleteProtectionMixin,
+class LabelDeleteView(mixins.UserAuthenticateMixin,
+                      mixins.DeleteProtectionMixin,
                       SuccessMessageMixin,
                       DeleteView):
     model = Label
