@@ -170,7 +170,7 @@ AUTH_USER_MODEL = 'users.User'
 FIXTURE_DIRS = ('task_manager/tests/fixtures/',)
 
 ROLLBAR = {
-    'access_token': '48163152cd23486691b5b06e28f9feb9',
+    'access_token': os.environ.get('POST_SERVER_ITEM_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
