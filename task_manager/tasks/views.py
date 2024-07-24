@@ -61,9 +61,10 @@ class TaskUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class TaskDeleteView(
-    UserAuthenticateMixin, DeleteProtectionMixin, SuccessMessageMixin, DeleteView
-):
+class TaskDeleteView(UserAuthenticateMixin,
+                     DeleteProtectionMixin,
+                     SuccessMessageMixin,
+                     DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks_list')

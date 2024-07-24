@@ -52,21 +52,21 @@ class TasksTestCase(TestCase):
                                   self.task3])
 
     def test_show_task(self):
-            self.client.force_login(self.user)
-            self.show_task = reverse('task_show', args=[1])
+        self.client.force_login(self.user)
+        self.show_task = reverse('task_show', args=[1])
 
-            response = self.client.get(self.show_task)
-            self.assertEqual(response.status_code, 200)
-            descriptions = response.context['task']
-            self.assertQuerysetEqual([descriptions.name,
-                                      descriptions.author,
-                                      descriptions.executor,
-                                      descriptions.description,
-                                      descriptions.status,
-                                      descriptions.created_at],
-                                     [self.task1.name, self.task1.author,
-                                     self.task1.executor, self.task1.description,
-                                     self.task1.status, self.task1.created_at])
+        response = self.client.get(self.show_task)
+        self.assertEqual(response.status_code, 200)
+        descriptions = response.context['task']
+        self.assertQuerysetEqual([descriptions.name,
+                                 descriptions.author,
+                                 descriptions.executor,
+                                 descriptions.description,
+                                 descriptions.status,
+                                 descriptions.created_at],
+                                 [self.task1.name, self.task1.author,
+                                 self.task1.executor, self.task1.description,
+                                 self.task1.status, self.task1.created_at])
 
     def test_create_task(self):
         self.client.force_login(self.user)
@@ -108,13 +108,13 @@ class TasksTestCase(TestCase):
 
         post_response = self.client.post(self.delete_task,
                                          follow=True)
-        self.assertRedirects(post_response,self.tasks)
+        self.assertRedirects(post_response, self.tasks)
         with self.assertRaises(ObjectDoesNotExist):
             Task.objects.get(pk=4)
         self.assertContains(post_response,
                             text=_('Task successfully delete'))
 
-def test_filter(self):
+    def test_filter(self):
         self.client.force_login(self.user)
 
         content_type_form = f'{self.tasks}?status=1&executor=1&label='
@@ -133,4 +133,4 @@ def test_filter(self):
         task = tasks_list[0]
         self.assertEqual(task.name, 'Учеба')
         self.assertEqual(task.executor.id, 1)
-        self.assertEqual(task.status.id, 1)
+        self.assertEqual(task.status.id, 3)

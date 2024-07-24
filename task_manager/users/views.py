@@ -4,7 +4,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.users.forms import UserForm, UpdateUserForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from task_manager.mixins import UserAuthenticateMixin, UserPermissionMixin, DeleteProtectionMixin
+from task_manager import mixins
 
 
 class UsersView(ListView):
@@ -21,8 +21,8 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_message = _('User successfully registered')
 
 
-class UserUpdateView(UserAuthenticateMixin,
-                     UserPermissionMixin,
+class UserUpdateView(mixins.UserAuthenticateMixin,
+                     mixins.UserPermissionMixin,
                      SuccessMessageMixin,
                      UpdateView):
     template_name = 'users/update.html'
@@ -34,9 +34,9 @@ class UserUpdateView(UserAuthenticateMixin,
     permission_url = reverse_lazy('users_list')
 
 
-class UserDeleteView(UserAuthenticateMixin,
-                     UserPermissionMixin,
-                     DeleteProtectionMixin,
+class UserDeleteView(mixins.UserAuthenticateMixin,
+                     mixins.UserPermissionMixin,
+                     mixins.DeleteProtectionMixin,
                      SuccessMessageMixin,
                      DeleteView):
     template_name = 'users/delete.html'

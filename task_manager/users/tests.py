@@ -39,7 +39,6 @@ class UserTestCase(TestCase):
         self.assertContains(post_response,
                             text=_('User successfully registered'))
 
-
     def test_update_user(self):
         self.client.force_login(self.user2)
         update_user = reverse('user_update', args=[2])
@@ -80,7 +79,6 @@ class UserTestCase(TestCase):
         post_response = self.client.post(del_user1, follow=True)
         self.assertContains(post_response,
                             text=_("You have no rights to changed user."))
-
 
     def delete_user_without_tasks(self):
         self.client.force_login(self.user3)

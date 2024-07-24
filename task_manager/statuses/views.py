@@ -40,9 +40,10 @@ class StatusUpdateView(UserAuthenticateMixin, SuccessMessageMixin, UpdateView):
     }
 
 
-class StatusDeleteView(
-    UserAuthenticateMixin, DeleteProtectionMixin, SuccessMessageMixin, DeleteView
-):
+class StatusDeleteView(UserAuthenticateMixin,
+                       DeleteProtectionMixin,
+                       SuccessMessageMixin,
+                       DeleteView):
     model = Status
     template_name = 'statuses/delete.html'
     success_message = _('Status successfully delete')

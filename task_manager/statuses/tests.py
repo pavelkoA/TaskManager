@@ -54,7 +54,7 @@ class StatusesTestCase(TestCase):
         self.assertRedirects(post_response, self.statuses)
         self.assertTrue(Status.objects.get(id=3))
         self.assertContains(post_response,
-                            text= _('Status successfully created'))
+                            text=_('Status successfully created'))
 
     def test_update_status(self):
         self.update_status = reverse('status_update', args=[1])
@@ -69,7 +69,7 @@ class StatusesTestCase(TestCase):
         self.status = Status.objects.get(pk=1)
         self.assertEqual(self.status.name, self.form_data['name'])
         self.assertContains(
-            post_response, text= _('Status successfully changed'))
+            post_response, text=_('Status successfully changed'))
 
     def test_delete_used_status(self):
         self.delete_status = reverse('status_delete', args=[1])
@@ -93,4 +93,4 @@ class StatusesTestCase(TestCase):
         with self.assertRaises(ObjectDoesNotExist):
             Status.objects.get(pk=2)
         self.assertContains(post_response,
-                            text= _('Status successfully delete'))
+                            text=_('Status successfully delete'))
