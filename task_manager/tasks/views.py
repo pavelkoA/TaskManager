@@ -80,5 +80,5 @@ class TaskDeleteView(mixins.UserAuthenticateMixin,
     author_url = reverse_lazy('tasks')
     extra_context = {
         'title': _('Delete task'),
-        'button_text': _('Yes, delete'),
+        'button_text': _('Delete'),
     }

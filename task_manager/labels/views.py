@@ -54,7 +54,7 @@ class LabelDeleteView(mixins.UserAuthenticateMixin,
     success_message = _('Label successfully delete')
     success_url = reverse_lazy('labels_list')
     protected_message = _(
-        'It is not possible to delete a label because it is in use'
+        'It is not possible to delete the label, it is in use'
     )
     protected_url = reverse_lazy('labels_list')
     extra_context = {

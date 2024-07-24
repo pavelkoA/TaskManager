@@ -54,7 +54,7 @@ class StatusDeleteView(mixins.UserAuthenticateMixin,
     success_message = _('Status successfully delete')
     success_url = reverse_lazy('statuses_list')
     protected_message = _(
-        'It is not possible to delete a status because it is in use'
+        'It is not possible to delete the status, it is in use'
     )
     protected_url = reverse_lazy('statuses_list')
     extra_context = {
