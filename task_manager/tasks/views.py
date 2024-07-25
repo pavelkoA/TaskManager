@@ -69,15 +69,15 @@ class TaskUpdateView(mixins.UserAuthenticateMixin,
 
 
 class TaskDeleteView(mixins.UserAuthenticateMixin,
-                     mixins.DeleteProtectionMixin,
+                     mixins.AuthorPermissionMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task
     template_name = 'tasks/delete.html'
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully delete')
-    protected_message = _('The task can be deleted only by its author')
-    protected_url = reverse_lazy('tasks')
+    author_permission_message = _('The task can be deleted only by its author')
+    author_permission_url = reverse_lazy('tasks_list')
     extra_context = {
         'title': _('Delete task'),
         'button_text': _('Delete'),
