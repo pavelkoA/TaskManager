@@ -1,5 +1,5 @@
 start:
-	poetry run python3 -m gunicorn task_manager.asgi:application -k uvicorn.workers.UvicornWorker
+	poetry run gunicorn -w 5 -b 0.0.0.0:8000 task_manager.wsgi
 
 dev:
 	poetry run python3 manage.py runserver 8080
