@@ -35,7 +35,7 @@ git clone git+https://github.com/pavelkoA/python-project-52.git
 cd python-project-52
 ```
 
-3. Переиеннуем файл .env.example в .env
+3. Переиеннуем файл .env.example в .env  
    В SECRET_KEY необходимо указать секретный ключ (нужен для работы Django)  
    В POST_SERVER_ITEM_ACCESS_TOKEN указываем токен от rollbar (необходим что бы ошибки отправлялись в сервис rollbar)  
    В DATABASE_URL необходимо вставить данные для подключения к базе банных:
