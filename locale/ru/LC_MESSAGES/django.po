@@ -300,13 +300,13 @@ msgstr "Создать"
 #: task_manager/labels/views.py:44
 #: task_manager/tasks/views.py:67
 msgid "Change"
-msgstr "Изменить"
+msgstr "Да, изменить"
 
 #: templates/users/users_list.html:28
 #: task_manager/labels/views.py:62
 #: task_manager/tasks/views.py:83
 msgid "Delete"
-msgstr "Удалить"
+msgstr "Да, удалить"
 
 #: templates/users/users_list.html:27
 msgid "Update"
