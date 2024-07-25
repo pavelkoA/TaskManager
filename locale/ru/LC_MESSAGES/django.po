@@ -201,7 +201,7 @@ msgstr "Задача изменена"
 
 #: task_manager/tasks/views.py:78
 msgid "Task successfully delete"
-msgstr "Задача успешно удалени"
+msgstr "Задача успешно удалена"
 
 #: task_manager/tasks/views.py:79
 msgid "The task can be deleted only by its author"
