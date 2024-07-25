@@ -5,8 +5,8 @@
 {% block content %}
     <h1> Login </h1>
     <form method="post">
-        {% bootstrap_form form %}
         {% csrf_token %}
+        {% bootstrap_form form %}
         <p><input type="submit" value="Login"></p>
     </form>
 {% endblock %}
