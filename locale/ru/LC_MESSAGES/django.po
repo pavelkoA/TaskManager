@@ -181,11 +181,11 @@ msgstr "Посмотреть задачу"
 
 #: task_manager/tasks/views.py:45
 msgid "Task successfully created"
-msgstr "Задача успешно изменина"
+msgstr "Задача успешно создана"
 
 #: task_manager/tasks/views.py:47
 msgid "Create task"
-msgstr "Задача создана"
+msgstr "Создать задачу"
 
 #: task_manager/tasks/views.py:64
 msgid "Task successfully changed"
@@ -262,11 +262,11 @@ msgstr "Метки"
 
 #: task_manager/labels/views.py:29
 msgid "Create label"
-msgstr "Создание метки"
+msgstr "Создать метку"
 
 #: task_manager/labels/views.py:43
 msgid "Change label"
-msgstr "Изминение метки"
+msgstr "Изминенить метку"
 
 #: task_manager/labels/views.py:26
 msgid "Label successfully created"
