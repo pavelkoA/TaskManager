@@ -28,11 +28,11 @@ msgstr ""
 
 #: task_manager/views.py:13
 msgid "You are logged in"
-msgstr "Вы вошли в систему"
+msgstr "Вы залогинены"
 
 #: task_manager/views.py:20
 msgid "You are logged out"
-msgstr "Вы вышли из системы"
+msgstr "Вы разлогинены"
 
 
 # temlate
