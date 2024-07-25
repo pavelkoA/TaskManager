@@ -209,7 +209,7 @@ msgstr "Задачу может удалить только ее автор"
 
 #: task_manager/tasks/views.py:82
 msgid "Delete task"
-msgstr "Задача удалена"
+msgstr "Удаление задачи"
 
 
 # statuses
