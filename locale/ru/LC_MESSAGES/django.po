@@ -247,7 +247,7 @@ msgstr "Статус успешно удален"
 
 #: task_manager/statuses/views.py:57
 msgid "It is not possible to delete the status, it is in use"
-msgstr "Не возможно удалить статус, он используется"
+msgstr "Невозможно удалить статус"
 
 #: task_manager/statuses/views.py:61
 msgid "Delete status"
