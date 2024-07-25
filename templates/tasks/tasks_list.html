@@ -43,7 +43,7 @@
             <td>{{ task.executor}}</td>
             <td>{{ task.time_create|date:'d.m.Y' }}</td>
             <td>
-                <a href="{% url 'task_update' task.pk %}">{% translate "Update" %}</a>
+                <a href="{% url 'task_update' task.pk %}">{% translate "Change" %}</a>
                 <br>
                 <a href="{% url 'task_delete' task.pk %}">{% translate "Delete" %}</a>
             </td>

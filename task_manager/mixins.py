@@ -3,14 +3,14 @@ from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.utils.translation import gettext
+from django.utils.translation import gettext as _
 
 
 class UserAuthenticateMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            messages.error(request, gettext('Please log in.'))
+            messages.error(request, _('Please log in.'))
             return redirect(reverse_lazy('login'))
         return super().dispatch(request, *args, **kwargs)
 
@@ -42,12 +42,12 @@ class AuthorPermissionMixin(UserPassesTestMixin):
 
 class DeleteProtectionMixin:
 
-    protection_message = ''
+    protected_message = ''
     protected_url = ''
 
     def post(self, request, *args, **kwargs):
         try:
             return super().post(request, *args, **kwargs)
         except ProtectedError:
-            messages.error(request, self.protection_message)
+            messages.error(request, self.protected_message)
             return redirect(self.protected_url)

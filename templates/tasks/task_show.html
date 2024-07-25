@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% translate "Task Manager Hexlet" %}{% endblock %}
-
 {% block content %}
 <h1 class="my-4">{{ title }}</h1>
 
@@ -51,7 +49,7 @@
 
                 <div class="row p-1">
                     <div class="col">
-                        <a href="{% url 'task_update' task.id %}">{% trans 'Edit' %}</a>
+                        <a href="{% url 'task_update' task.id %}">{% trans 'Change' %}</a>
                         <br>
                         <a href="{% url 'task_delete' task.id %}">{% trans 'Delete' %}</a>
                     </div>

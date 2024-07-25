@@ -11,6 +11,9 @@ test:
 	poetry run python manage.py test
 	poetry run flake8
 
+lint:
+	poetry run flake8
+
 migrate:
 	poetry run python manage.py makemigrations
 	poetry run python manage.py migrate

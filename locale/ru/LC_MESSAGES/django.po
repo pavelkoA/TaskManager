@@ -20,6 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+
 # task manager
 #: task_manager/settings.py:134
 msgid "Russian"
@@ -43,7 +44,7 @@ msgstr ""
 msgid "Demo version of the application"
 msgstr "Демонстрационная версия приложения"
 
-#: templates/nav.html:8
+#: templates/nav.html:16
 msgid "Task manager"
 msgstr "Менеджер задач"
 
@@ -51,15 +52,19 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/nav.html:24
+#: templates/nav.html:26
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/nav.html:33
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/nav.html:28
+#: templates/nav.html:37
 msgid "Login"
 msgstr "Вход"
 
-#: templates/nav.html:14
+#: templates/nav.html:40
 msgid "Sign up"
 msgstr "Регистрация"
 
@@ -67,11 +72,7 @@ msgstr "Регистрация"
 msgid "User name"
 msgstr "Имя пользователя"
 
-msgid "First name"
-msgstr "Имя"
 
-msgid "Last name"
-msgstr "Фамилия"
 
 msgid "Register"
 msgstr "Зарегистрировать"
@@ -84,17 +85,46 @@ msgstr "Полное имя"
 msgid "Date of creation"
 msgstr "Дата создания"
 
-
-
+#: task_manager/users/views.py:12
 msgid "Delete user"
 msgstr "Удалить пользователя"
 
+#: task_manager/users/views.py:12
 msgid "Are you want to delete"
 msgstr "Вы хотите удалить"
 
+# users
+
+#: task_manager/users/forms.py:10
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/users/forms.py:12
+msgid "Last name"
+msgstr "Фамилия"
+
+#: task_manager/users/views.py:21
+msgid "User successfully registered"
+msgstr "Пользователь успешно зарегистрирован"
+
+#: task_manager/users/views.py:32
+msgid "User successfully updated"
+msgstr ""
+
+#: task_manager/users/views.py:33
+msgid "You have no rights to changed user."
+msgstr "У вас нет прав на изменение пользователя"
+
+#: task_manager/users/views.py:45
+msgid "User successfully deleted"
+msgstr "Пользователь успешно удален"
+
+#: task_manager/users/views.py:46
+msgid "You have no rights to deleted user."
+msgstr "У вас нет прав на удаление пользователя"
 
 
-# Tasks
+# tasks
 
 #: task_manager/tasks/filters.py:16
 msgid "Label"
@@ -163,7 +193,7 @@ msgid "Delete task"
 msgstr "Задача удалена"
 
 
-# Statuses
+# statuses
 
 #: task_manager/statuses/forms.py:8
 #: task_manager/statuses/models.py:7
@@ -209,7 +239,7 @@ msgid "Delete status"
 msgstr "Удалить статус"
 
 
-# Labels
+# labels
 
 #: task_manager/labels/forms.py:8
 #: task_manager/labels/models.py:7
@@ -230,6 +260,14 @@ msgstr "Создание метки"
 msgid "Change label"
 msgstr "Изминение метки"
 
+#: task_manager/labels/views.py:26
+msgid "Label successfully created"
+msgstr "Метка успешно создана"
+
+#: task_manager/labels/views.py:26
+msgid "Label successfully changed"
+msgstr "Метка успешно изменена"
+
 #: task_manager/labels/views.py:54
 msgid "Label successfully delete"
 msgstr "Метка успешно удалена"
@@ -243,7 +281,7 @@ msgid "Delete label"
 msgstr "Удалить метку"
 
 
-# General
+# general
 
 #: task_manager/labels/models.py:10
 #: task_manager/tasks/models.py:25
@@ -268,7 +306,7 @@ msgstr "Удалить"
 
 #: templates/users/users_list.html:27
 msgid "Update"
-msgstr "Изменить"
+msgstr "Обновить"
 
 #: task_manager/tasks/views.py:24
 msgid "Show"
