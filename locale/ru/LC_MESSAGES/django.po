@@ -58,8 +58,12 @@ msgid "Logout"
 msgstr "Выход"
 
 #: templates/nav.html:37
-msgid "Login"
+msgid "Log in"
 msgstr "Войти"
+
+#: templates/nav.html:37
+msgid "Login"
+msgstr "Вход"
 
 #: templates/nav.html:40
 msgid "Sign up"
