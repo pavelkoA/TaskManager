@@ -107,7 +107,6 @@ if RENDER_EXTERNAL_HOSTNAME:
         'default': dj_database_url.config(
             default=os.getenv('DATABASE_URL'),
             conn_max_age=600,
-            conn_health_checks=True,
         )
     }
 
@@ -166,8 +165,6 @@ LOGIN_REDIRECT_URL  =  reverse_lazy('index')
 LOGOUT_REDIRECT_URL  =  reverse_lazy('index')
 
 AUTH_USER_MODEL = 'users.User'
-
-FIXTURE_DIRS = ('task_manager/tests/fixtures/',)
 
 ROLLBAR = {
     'access_token': os.environ.get('POST_SERVER_ITEM_ACCESS_TOKEN'),
