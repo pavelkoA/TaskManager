@@ -52,9 +52,6 @@ msgstr "Менеджер задач"
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/nav.html:26
-msgid "Labels"
-msgstr "Метки"
 
 #: templates/nav.html:33
 msgid "Logout"
@@ -72,7 +69,9 @@ msgstr "Регистрация"
 msgid "User name"
 msgstr "Имя пользователя"
 
-
+#: templates/users/create.html:5
+msgid "Update user"
+msgstr "Изменение пользователя"
 
 msgid "Register"
 msgstr "Зарегистрировать"
@@ -249,6 +248,7 @@ msgstr "Имя метки"
 #: task_manager/labels/models.py:17
 #: task_manager/labels/views.py:16
 #: task_manager/tasks/models.py:29
+#: templates/nav.html:26
 msgid "Labels"
 msgstr "Метки"
 
