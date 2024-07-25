@@ -124,7 +124,7 @@ msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:33
 msgid "You have no rights to changed user."
-msgstr "У вас нет прав на изменение пользователя"
+msgstr "У вас нет прав для изменения"
 
 #: task_manager/users/views.py:45
 msgid "User successfully deleted"
@@ -132,7 +132,7 @@ msgstr "Пользователь успешно удален"
 
 #: task_manager/users/views.py:46
 msgid "You have no rights to deleted user."
-msgstr "У вас нет прав на удаление пользователя"
+msgstr "У вас нет прав для изменения другого пользователя."
 
 
 # tasks
