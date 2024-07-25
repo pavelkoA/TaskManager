@@ -175,6 +175,10 @@ msgstr "Задача"
 msgid "Tasks"
 msgstr "Задачи"
 
+#: task_manager/tasks/views.py:24
+msgid "Show"
+msgstr "Показать"
+
 #: task_manager/tasks/views.py:34
 msgid "View a task"
 msgstr "Посмотреть задачу"
@@ -315,7 +319,3 @@ msgstr "Удалить"
 #: templates/users/users_list.html:27
 msgid "Update"
 msgstr "Обновить"
-
-#: task_manager/tasks/views.py:24
-msgid "Show"
-msgstr ""
