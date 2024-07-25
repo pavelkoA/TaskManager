@@ -59,7 +59,7 @@ msgstr "Выход"
 
 #: templates/nav.html:37
 msgid "Login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: templates/nav.html:40
 msgid "Sign up"
