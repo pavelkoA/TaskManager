@@ -52,6 +52,13 @@ cd python-project-52
 make install
 ```
 
+
+5. Для старта приложения можно воспользоваться командой.  
+```sh
+make start
+```
+
+
 ## Ссылка на render.com
 
 [Демонстрационная версия приложения](https://python-project-52-j3e4.onrender.com)
