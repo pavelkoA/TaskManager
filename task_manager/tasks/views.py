@@ -1,8 +1,6 @@
 from task_manager.tasks.models import Task
-from task_manager.tasks.forms import TaskForm
 from task_manager.tasks.filters import TaskFilter
 from django.urls import reverse_lazy
-from task_manager.users.models import User
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
@@ -12,7 +10,7 @@ from django.views.generic import (
 )
 
 
-class TasksListView(mixins.UserAuthenticateMixin,
+class TasksListView(mixins.CustomLoginRequiredMixin,
                     FilterView,
                     ListView):
     model = Task
@@ -25,7 +23,7 @@ class TasksListView(mixins.UserAuthenticateMixin,
     }
 
 
-class TaskShowView(mixins.UserAuthenticateMixin,
+class TaskShowView(mixins.CustomLoginRequiredMixin,
                    DetailView):
     model = Task
     template_name = 'tasks/task_show.html'
@@ -35,12 +33,12 @@ class TaskShowView(mixins.UserAuthenticateMixin,
     }
 
 
-class TaskCreateView(mixins.UserAuthenticateMixin,
+class TaskCreateView(mixins.CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      CreateView):
     model = Task
     template_name = 'form.html'
-    form_class = TaskForm
+    fields = ['name', 'description', 'status', 'labels', 'executor']
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully created')
     extra_context = {
@@ -49,17 +47,16 @@ class TaskCreateView(mixins.UserAuthenticateMixin,
     }
 
     def form_valid(self, form):
-        user = self.request.user
-        form.instance.author = User.objects.get(pk=user.pk)
+        form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class TaskUpdateView(mixins.UserAuthenticateMixin,
+class TaskUpdateView(mixins.CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      UpdateView):
     model = Task
     template_name = 'form.html'
-    form_class = TaskForm
+    fields = ['name', 'description', 'status', 'labels', 'executor']
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully changed')
     extra_context = {
@@ -68,7 +65,7 @@ class TaskUpdateView(mixins.UserAuthenticateMixin,
     }
 
 
-class TaskDeleteView(mixins.UserAuthenticateMixin,
+class TaskDeleteView(mixins.CustomLoginRequiredMixin,
                      mixins.AuthorPermissionMixin,
                      SuccessMessageMixin,
                      DeleteView):

@@ -1,10 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.users.forms import UserForm, UpdateUserForm
+from task_manager.users.forms import UserForm
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from task_manager import mixins
+from task_manager.mixins import LoginRequiredAndUserSelfCheckMixin
 
 
 class UsersView(ListView):
@@ -21,22 +21,19 @@ class UserCreateView(SuccessMessageMixin, CreateView):
     success_message = _('User successfully registered')
 
 
-class UserUpdateView(mixins.UserAuthenticateMixin,
-                     mixins.UserPermissionMixin,
+class UserUpdateView(LoginRequiredAndUserSelfCheckMixin,
                      SuccessMessageMixin,
                      UpdateView):
     template_name = 'users/update.html'
     model = get_user_model()
-    form_class = UpdateUserForm
+    form_class = UserForm
     success_url = reverse_lazy('users_list')
     success_message = _('User successfully updated')
     permission_message = _('You have no rights to changed user.')
     permission_url = reverse_lazy('users_list')
 
 
-class UserDeleteView(mixins.UserAuthenticateMixin,
-                     mixins.UserPermissionMixin,
-                     mixins.DeleteProtectionMixin,
+class UserDeleteView(LoginRequiredAndUserSelfCheckMixin,
                      SuccessMessageMixin,
                      DeleteView):
     template_name = 'users/delete.html'
@@ -46,6 +43,3 @@ class UserDeleteView(mixins.UserAuthenticateMixin,
     permission_message = _('You have no rights to deleted user.')
     permission_url = 'users_list'
     rejection_next_url = reverse_lazy('users_list')
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)

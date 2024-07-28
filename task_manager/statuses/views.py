@@ -7,7 +7,7 @@ from task_manager import mixins
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class StatusesListView(mixins.UserAuthenticateMixin,
+class StatusesListView(mixins.CustomLoginRequiredMixin,
                        ListView):
     model = Status
     template_name = 'statuses/statuses_list.html'
@@ -17,7 +17,7 @@ class StatusesListView(mixins.UserAuthenticateMixin,
     }
 
 
-class StatusCreateView(mixins.UserAuthenticateMixin,
+class StatusCreateView(mixins.CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        CreateView):
     model = Status
@@ -31,7 +31,7 @@ class StatusCreateView(mixins.UserAuthenticateMixin,
     }
 
 
-class StatusUpdateView(mixins.UserAuthenticateMixin,
+class StatusUpdateView(mixins.CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        UpdateView):
     model = Status
@@ -45,7 +45,7 @@ class StatusUpdateView(mixins.UserAuthenticateMixin,
     }
 
 
-class StatusDeleteView(mixins.UserAuthenticateMixin,
+class StatusDeleteView(mixins.CustomLoginRequiredMixin,
                        mixins.DeleteProtectionMixin,
                        SuccessMessageMixin,
                        DeleteView):

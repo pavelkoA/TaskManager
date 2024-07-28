@@ -6,13 +6,28 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext as _
 
 
-class UserAuthenticateMixin(LoginRequiredMixin):
+class CustomLoginRequiredMixin(LoginRequiredMixin):
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            messages.error(request, _('Please log in.'))
-            return redirect(reverse_lazy('login'))
-        return super().dispatch(request, *args, **kwargs)
+    def handle_no_permission(self):
+        messages.error(self.request, _('Please log in.'))
+        return redirect(reverse_lazy('login'))
+
+
+class LoginRequiredAndUserSelfCheckMixin(CustomLoginRequiredMixin,
+                                         UserPassesTestMixin):
+
+    permission_message = ''
+    permission_url = ''
+
+    def test_func(self):
+        return self.request.user == self.get_object()
+
+    def handle_no_permission(self):
+        if not self.request.user.is_authenticated:
+            return super().handle_no_permission()
+        else:
+            messages.error(self.request, self.permission_message)
+            return redirect(self.permission_url)
 
 
 class UserPermissionMixin(UserPassesTestMixin):

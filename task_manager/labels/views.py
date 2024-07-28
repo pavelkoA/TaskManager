@@ -4,10 +4,11 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from task_manager import mixins
+from task_manager.mixins import CustomLoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class LabelListView(mixins.UserAuthenticateMixin,
+class LabelListView(CustomLoginRequiredMixin,
                     ListView):
     model = Label
     template_name = 'labels/labels_list.html'
@@ -17,7 +18,7 @@ class LabelListView(mixins.UserAuthenticateMixin,
     }
 
 
-class LabelCreateView(mixins.UserAuthenticateMixin,
+class LabelCreateView(CustomLoginRequiredMixin,
                       SuccessMessageMixin,
                       CreateView):
     model = Label
@@ -31,7 +32,7 @@ class LabelCreateView(mixins.UserAuthenticateMixin,
     }
 
 
-class LabelUpdateView(mixins.UserAuthenticateMixin,
+class LabelUpdateView(CustomLoginRequiredMixin,
                       SuccessMessageMixin,
                       UpdateView):
     model = Label
@@ -45,8 +46,7 @@ class LabelUpdateView(mixins.UserAuthenticateMixin,
     }
 
 
-class LabelDeleteView(mixins.UserAuthenticateMixin,
-                      mixins.DeleteProtectionMixin,
+class LabelDeleteView(mixins.CustomLoginRequiredMixin,
                       SuccessMessageMixin,
                       DeleteView):
     model = Label
