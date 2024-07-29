@@ -4,13 +4,13 @@ from django.urls import reverse_lazy
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager import mixins
+from task_manager.mixins import CustomLoginRequiredMixin, AuthorPermissionMixin
 from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, DetailView
 )
 
 
-class TasksListView(mixins.CustomLoginRequiredMixin,
+class TasksListView(CustomLoginRequiredMixin,
                     FilterView,
                     ListView):
     model = Task
@@ -23,7 +23,7 @@ class TasksListView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class TaskShowView(mixins.CustomLoginRequiredMixin,
+class TaskShowView(CustomLoginRequiredMixin,
                    DetailView):
     model = Task
     template_name = 'tasks/task_show.html'
@@ -33,7 +33,7 @@ class TaskShowView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class TaskCreateView(mixins.CustomLoginRequiredMixin,
+class TaskCreateView(CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      CreateView):
     model = Task
@@ -51,7 +51,7 @@ class TaskCreateView(mixins.CustomLoginRequiredMixin,
         return super().form_valid(form)
 
 
-class TaskUpdateView(mixins.CustomLoginRequiredMixin,
+class TaskUpdateView(CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      UpdateView):
     model = Task
@@ -65,8 +65,8 @@ class TaskUpdateView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class TaskDeleteView(mixins.CustomLoginRequiredMixin,
-                     mixins.AuthorPermissionMixin,
+class TaskDeleteView(CustomLoginRequiredMixin,
+                     AuthorPermissionMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task

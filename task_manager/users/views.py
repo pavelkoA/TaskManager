@@ -41,5 +41,4 @@ class UserDeleteView(LoginRequiredAndUserSelfCheckMixin,
     success_url = reverse_lazy('users_list')
     success_message = _('User successfully deleted')
     permission_message = _('You have no rights to deleted user.')
-    permission_url = 'users_list'
-    rejection_next_url = reverse_lazy('users_list')
+    permission_url = reverse_lazy('users_list')

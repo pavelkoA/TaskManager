@@ -30,19 +30,6 @@ class LoginRequiredAndUserSelfCheckMixin(CustomLoginRequiredMixin,
             return redirect(self.permission_url)
 
 
-class UserPermissionMixin(UserPassesTestMixin):
-
-    permission_message = ''
-    permission_url = ''
-
-    def test_func(self):
-        return self.get_object() == self.request.user
-
-    def handle_no_permission(self):
-        messages.error(self.request, self.permission_message)
-        return redirect(self.permission_url)
-
-
 class AuthorPermissionMixin(UserPassesTestMixin):
     author_permission_message = ''
     author_permission_url = ''

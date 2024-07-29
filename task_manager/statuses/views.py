@@ -1,13 +1,12 @@
-from .models import Status
-from .forms import StatusForm
+from task_manager.statuses.models import Status
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager import mixins
+from task_manager.mixins import CustomLoginRequiredMixin, DeleteProtectionMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
-class StatusesListView(mixins.CustomLoginRequiredMixin,
+class StatusesListView(CustomLoginRequiredMixin,
                        ListView):
     model = Status
     template_name = 'statuses/statuses_list.html'
@@ -17,12 +16,12 @@ class StatusesListView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class StatusCreateView(mixins.CustomLoginRequiredMixin,
+class StatusCreateView(CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        CreateView):
     model = Status
     template_name = 'form.html'
-    form_class = StatusForm
+    fields = ['name']
     success_message = _('Status successfully created')
     success_url = reverse_lazy('statuses_list')
     extra_context = {
@@ -31,12 +30,12 @@ class StatusCreateView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class StatusUpdateView(mixins.CustomLoginRequiredMixin,
+class StatusUpdateView(CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        UpdateView):
     model = Status
     template_name = 'form.html'
-    form_class = StatusForm
+    fields = ['name']
     success_message = _('Status successfully changed')
     success_url = reverse_lazy('statuses_list')
     extra_context = {
@@ -45,8 +44,8 @@ class StatusUpdateView(mixins.CustomLoginRequiredMixin,
     }
 
 
-class StatusDeleteView(mixins.CustomLoginRequiredMixin,
-                       mixins.DeleteProtectionMixin,
+class StatusDeleteView(CustomLoginRequiredMixin,
+                       DeleteProtectionMixin,
                        SuccessMessageMixin,
                        DeleteView):
     model = Status
