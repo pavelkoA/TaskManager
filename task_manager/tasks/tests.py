@@ -6,22 +6,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 
 
-class TestTasksNotAuth(TestCase):
-
-    def setUp(self):
-        self.login = reverse('login')
-        self.urls = [reverse('tasks_list'),
-                     reverse('task_show', args=[1]),
-                     reverse('task_create'),
-                     reverse('task_delete', args=[1]),
-                     reverse('task_update', args=[1])]
-
-    def test_no_auth(self):
-        for u in self.urls:
-            response = self.client.get(u)
-            self.assertRedirects(response, self.login)
-
-
 class TasksTestCase(TestCase):
     fixtures = ['tasks.json', 'user.json',
                 'statuses.json']

@@ -66,6 +66,7 @@ class TaskUpdateView(CustomLoginRequiredMixin,
 
 
 class TaskDeleteView(AuthorPermissionMixin,
+                     CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      DeleteView):
     model = Task
