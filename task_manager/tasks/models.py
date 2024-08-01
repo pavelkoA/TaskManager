@@ -7,7 +7,7 @@ from django.contrib.auth import get_user_model
 
 class Task(models.Model):
     name = models.CharField(
-        max_length=150, unique=True, blank=False, verbose_name=_('Name')
+        max_length=100, unique=True, blank=False, verbose_name=_('Name')
     )
     description = models.TextField(blank=True, verbose_name=_('Description'))
     status = models.ForeignKey(
