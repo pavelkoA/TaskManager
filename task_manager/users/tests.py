@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from task_manager.users.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext as _
 
@@ -9,8 +9,8 @@ class UserTestCase(TestCase):
     fixtures = ['user.json']
 
     def setUp(self):
-        self.user1 = User.objects.get(pk=1)
-        self.user2 = User.objects.get(pk=2)
+        self.user1 = get_user_model().objects.get(pk=1)
+        self.user2 = get_user_model().objects.get(pk=2)
         self.users_list = reverse('users_list')
         self.login = reverse('login')
         self.form_data = {'username': 'anotherUser',
@@ -35,7 +35,7 @@ class UserTestCase(TestCase):
         post_response = self.client.post(create_user,
                                          self.form_data, follow=True)
         self.assertRedirects(post_response, self.login)
-        self.assertTrue(User.objects.get(id=3))
+        self.assertTrue(get_user_model().objects.get(id=3))
         self.assertContains(post_response,
                             text=_('User successfully registered'))
 
@@ -49,7 +49,7 @@ class UserTestCase(TestCase):
         post_response = self.client.post(update_user,
                                          self.form_data, follow=True)
         self.assertRedirects(post_response, self.users_list)
-        updated_user = User.objects.get(pk=2)
+        updated_user = get_user_model().objects.get(pk=2)
         self.assertEqual(updated_user.username, 'anotherUser')
         self.assertContains(post_response,
                             text=_('User successfully updated'))
@@ -64,7 +64,7 @@ class UserTestCase(TestCase):
 
         post_response = self.client.post(updated_user,
                                          self.form_data, follow=True)
-        user = User.objects.get(id=1)
+        user = get_user_model().objects.get(id=1)
         self.assertRedirects(post_response, self.users_list)
         self.assertFalse(user.username == self.form_data['username'])
 
@@ -74,7 +74,7 @@ class UserTestCase(TestCase):
 
         get_response = self.client.get(del_user1)
         self.assertRedirects(get_response, self.users_list)
-        self.assertEqual(len(User.objects.all()), 3)
+        self.assertEqual(len(get_user_model().objects.all()), 3)
 
         post_response = self.client.post(del_user1, follow=True)
         self.assertContains(post_response,
@@ -90,7 +90,7 @@ class UserTestCase(TestCase):
         post_response = self.client.post(user, follow=True)
         self.assertRedirects(post_response, self.users_list)
         with self.assertRaises(ObjectDoesNotExist):
-            User.objects.get(pk=3)
+            get_user_model().objects.get(pk=3)
         self.assertContains(post_response,
                             text=_("User successfully deleted"))
 
@@ -100,7 +100,7 @@ class UserTestCase(TestCase):
 
         get_response = self.client.get(user, follow=True)
         self.assertRedirects(get_response, self.users_list)
-        self.assertEqual(len(User.objects.all()), 3)
+        self.assertEqual(len(get_user_model().objects.all()), 3)
 
         post_response = self.client.post(user, follow=True)
         self.assertContains(post_response,

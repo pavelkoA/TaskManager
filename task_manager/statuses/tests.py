@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from task_manager.users.models import User
+from django.contrib.auth import get_user_model
 from task_manager.statuses.models import Status
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
@@ -25,7 +25,7 @@ class TestStatusesCase(TestCase):
     fixtures = ['statuses.json', 'user.json']
 
     def setUp(self):
-        self.user = User.objects.get(pk=1)
+        self.user = get_user_model().objects.get(pk=1)
         self.client.force_login(self.user)
         self.statuses = reverse('statuses_list')
         self.form_data = {'name': 'new status'}

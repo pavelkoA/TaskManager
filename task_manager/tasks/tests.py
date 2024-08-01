@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from task_manager.users.models import User
+from django.contrib.auth import get_user_model
 from task_manager.tasks.models import Task
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
@@ -11,7 +11,7 @@ class TasksTestCase(TestCase):
                 'statuses.json']
 
     def setUp(self):
-        self.user = User.objects.get(pk=1)
+        self.user = get_user_model().objects.get(pk=1)
         self.tasks = reverse('tasks_list')
         self.task1 = Task.objects.get(pk=1)
         self.task2 = Task.objects.get(pk=2)
