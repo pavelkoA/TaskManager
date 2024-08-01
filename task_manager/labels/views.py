@@ -1,10 +1,8 @@
 from .models import Label
-from django.contrib import messages
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import CustomLoginRequiredMixin
+from task_manager.mixins import CustomLoginRequiredMixin, DeleteProtectionMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
@@ -47,21 +45,18 @@ class LabelUpdateView(CustomLoginRequiredMixin,
 
 
 class LabelDeleteView(CustomLoginRequiredMixin,
+                      DeleteProtectionMixin,
                       SuccessMessageMixin,
                       DeleteView):
     model = Label
     template_name = 'labels/delete.html'
     success_message = _('Label successfully delete')
     success_url = reverse_lazy('labels_list')
+    protected_message = _(
+        'It is not possible to delete the label, it is in use')
+    protected_url = 'labels_list'
 
     extra_context = {
         'title': _('Delete label'),
         'button_text': _('Delete'),
     }
-
-    def post(self, request, *args, **kwargs):
-        if self.get_object().tasks.exists():
-            messages.error(self.request, _(
-            'It is not possible to delete the label, it is in use'))
-            return redirect('labels_list')
-        return super().post(request, *args, **kwargs)

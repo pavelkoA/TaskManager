@@ -49,6 +49,11 @@ class DeleteProtectionMixin:
 
     def post(self, request, *args, **kwargs):
         try:
+            if self.get_object().tasks.exists():
+                messages.error(self.request, self.protected_message)
+                return redirect(self.protected_url)
+            return super().post(request, *args, **kwargs)
+        except AttributeError:
             return super().post(request, *args, **kwargs)
         except ProtectedError:
             messages.error(request, self.protected_message)
