@@ -14,7 +14,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <header>
-    {% include 'nav.html' %}
+    {% include 'include/nav.html' %}
     </header>
     <div class="container wrapper flex-grow-1">
         <div class="alert-{{ message.tag }}" role="alert">
@@ -29,9 +29,7 @@
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between py-4 border-top">
             <div class="d-flex align-items-center">
-                <div>
-                    <a href="https://python-project-52-j3e4.onrender.com" target="_blank">{% translate "Demo version of the application" %}</a>
-                </div>
+
             </div>
         </footer>
     </div>

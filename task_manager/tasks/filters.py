@@ -9,21 +9,24 @@ from django_filters import FilterSet, ModelChoiceFilter, BooleanFilter
 
 class TaskFilter(FilterSet):
 
-    status = ModelChoiceFilter(
-        label=_('Status'), queryset=Status.objects.all()
-    )
-    executor = ModelChoiceFilter(
-        label=_('Executor'), queryset=get_user_model().objects.all()
-    )
-    labels = ModelChoiceFilter(
-        label=_('Label'), queryset=Label.objects.all()
-    )
-    self_tasks = BooleanFilter(
-        label=_('Only your tasks'), widget=CheckboxInput,
-        method='get_self_tasks'
-    )
+    status = ModelChoiceFilter(queryset=Status.objects.all(),
+                               field_name='status',
+                               label=_('Status'))
 
-    def get_self_tasks(self, queryset, field_name, value):
+    executor = ModelChoiceFilter(queryset=get_user_model().objects.all(),
+                                 field_name='executor',
+                                 label=_('Executor'))
+
+    labels = ModelChoiceFilter(queryset=Label.objects.all(),
+                               field_name='labels',
+                               label=_('Label'))
+
+    own_tasks = BooleanFilter(widget=CheckboxInput,
+                              label=_('Only your own tasks'),
+                              field_name='creator',
+                              method='get_own_tasks')
+
+    def get_own_tasks(self, queryset, name, value):
         if value:
             user = self.request.user.id
             return queryset.filter(author=user)
@@ -31,4 +34,4 @@ class TaskFilter(FilterSet):
 
     class Meta:
         model = Task
-        fields = ['status', 'executor', 'labels']
+        fields = ['status', 'executor', 'labels', 'own_tasks']

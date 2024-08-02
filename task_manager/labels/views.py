@@ -1,8 +1,10 @@
 from .models import Label
 from django.urls import reverse_lazy
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import CustomLoginRequiredMixin, DeleteProtectionMixin
+from task_manager.mixins import CustomLoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
@@ -45,7 +47,6 @@ class LabelUpdateView(CustomLoginRequiredMixin,
 
 
 class LabelDeleteView(CustomLoginRequiredMixin,
-                      DeleteProtectionMixin,
                       SuccessMessageMixin,
                       DeleteView):
     model = Label
@@ -60,3 +61,9 @@ class LabelDeleteView(CustomLoginRequiredMixin,
         'title': _('Delete label'),
         'button_text': _('Delete'),
     }
+
+    def post(self, request, *args, **kwargs):
+        if self.get_object().tasks.exists():
+            messages.error(self.request, self.protected_message)
+            return redirect(self.protected_url)
+        return super().post(request, *args, **kwargs)

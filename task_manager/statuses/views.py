@@ -1,8 +1,11 @@
 from task_manager.statuses.models import Status
 from django.urls import reverse_lazy
+from django.db.models import ProtectedError
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import CustomLoginRequiredMixin, DeleteProtectionMixin
+from task_manager.mixins import CustomLoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
@@ -45,7 +48,6 @@ class StatusUpdateView(CustomLoginRequiredMixin,
 
 
 class StatusDeleteView(CustomLoginRequiredMixin,
-                       DeleteProtectionMixin,
                        SuccessMessageMixin,
                        DeleteView):
     model = Status
@@ -60,3 +62,10 @@ class StatusDeleteView(CustomLoginRequiredMixin,
         'title': _('Delete status'),
         'button_text': _('Delete'),
     }
+
+    def post(self, request, *args, **kwargs):
+        try:
+            return super().post(request, *args, **kwargs)
+        except ProtectedError:
+            messages.error(request, self.protected_message)
+            return redirect(self.protected_url)
