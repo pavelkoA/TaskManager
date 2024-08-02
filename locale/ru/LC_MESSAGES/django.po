@@ -199,6 +199,10 @@ msgstr "Задача успешно изменена"
 msgid "Task change"
 msgstr "Задача изменена"
 
+#: task_manager/tasks/views.py:66
+msgid "Change task"
+msgstr "Изменить задачу"
+
 #: task_manager/tasks/views.py:78
 msgid "Task successfully delete"
 msgstr "Задача успешно удалена"
@@ -270,7 +274,7 @@ msgstr "Создать метку"
 
 #: task_manager/labels/views.py:43
 msgid "Change label"
-msgstr "Изминенить метку"
+msgstr "Изменить метку"
 
 #: task_manager/labels/views.py:26
 msgid "Label successfully created"

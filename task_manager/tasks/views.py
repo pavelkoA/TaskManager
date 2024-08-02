@@ -37,7 +37,7 @@ class TaskCreateView(CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      CreateView):
     model = Task
-    template_name = 'form.html'
+    template_name = 'tasks/create.html'
     fields = ['name', 'description', 'status', 'labels', 'executor']
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully created')
@@ -55,7 +55,7 @@ class TaskUpdateView(CustomLoginRequiredMixin,
                      SuccessMessageMixin,
                      UpdateView):
     model = Task
-    template_name = 'form.html'
+    template_name = 'tasks/update.html'
     fields = ['name', 'description', 'status', 'labels', 'executor']
     success_url = reverse_lazy('tasks_list')
     success_message = _('Task successfully changed')

@@ -23,7 +23,7 @@ class StatusCreateView(CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        CreateView):
     model = Status
-    template_name = 'form.html'
+    template_name = 'statuses/create.html'
     fields = ['name']
     success_message = _('Status successfully created')
     success_url = reverse_lazy('statuses_list')
@@ -37,7 +37,7 @@ class StatusUpdateView(CustomLoginRequiredMixin,
                        SuccessMessageMixin,
                        UpdateView):
     model = Status
-    template_name = 'form.html'
+    template_name = 'statuses/update.html'
     fields = ['name']
     success_message = _('Status successfully changed')
     success_url = reverse_lazy('statuses_list')
